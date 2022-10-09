@@ -4,6 +4,9 @@
  */
 package com.mycompany.quanlykhoahoc.BLL;
 
+import com.mycompany.quanlykhoahoc.Entity.OnlineCourse;
+import java.util.ArrayList;
+
 
 
 /**
@@ -12,7 +15,8 @@ package com.mycompany.quanlykhoahoc.BLL;
  */
 public class ClientTest {
     public static void main(String[] args) {
-        StudentBLL stdBll = new StudentBLL();
-        System.out.println(stdBll.countRecordStudent());
+        OnlineCourseBLL bLL = new OnlineCourseBLL();
+        OnlineCourse course = bLL.getOnlineCourse(4041);
+        System.out.println(course.toString());
     }
 }

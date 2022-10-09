@@ -348,6 +348,9 @@ ALTER TABLE `StudentGrade`
 --
 ALTER TABLE `Course`
   MODIFY `CourseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4062;
+  
+ALTER TABLE `OnlineCourse`
+  MODIFY `CourseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4062;
 
 --
 -- AUTO_INCREMENT for table `Person`
@@ -360,6 +363,9 @@ ALTER TABLE `Person`
 --
 ALTER TABLE `StudentGrade`
   MODIFY `EnrollmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  
+ALTER TABLE `Department`
+  MODIFY `DepartmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -393,6 +399,7 @@ ALTER TABLE `Officeassignment`
   ADD CONSTRAINT `fk_officeassingment_person` FOREIGN KEY (`InstructorID`) REFERENCES `Person` (`PersonID`);
   
 COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

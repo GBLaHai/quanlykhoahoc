@@ -23,7 +23,7 @@ public class TeacherDAL extends MyDatabaseManager{
         ArrayList list = new ArrayList();
         try {
             String query = "SELECT * FROM Person WHERE HireDate > 0";
-            ResultSet rs = TeacherDAL.SQLQuery(query);
+            ResultSet rs = SQLQuery(query);
 
             if (rs != null) {
                 while (rs.next()) {
@@ -50,7 +50,7 @@ public class TeacherDAL extends MyDatabaseManager{
         try {
             String query = "SELECT * FROM Person WHERE HireDate > 0 AND PersonID = ? ";
 
-            PreparedStatement p = StudentDAL.getConnection().prepareStatement(query);
+            PreparedStatement p = getConnection().prepareStatement(query);
             p.setInt(1, teacherID);
             ResultSet rs = p.executeQuery();
 
@@ -77,7 +77,7 @@ public class TeacherDAL extends MyDatabaseManager{
         try {
             String query = "Update Person SET FirstName = ? , LastName = ? "
                     + " WHERE PersonID = ?";
-            PreparedStatement p = StudentDAL.getConnection().prepareStatement(query);
+            PreparedStatement p = getConnection().prepareStatement(query);
             p.setString(1, t.getFirstName());
             p.setString(2, t.getLastName());
             p.setInt(3, t.getPersonId());
@@ -96,7 +96,7 @@ public class TeacherDAL extends MyDatabaseManager{
 
         try {
             String query = "Insert Person (FirstName, LastName, HireDate) VALUES (?, ?, ?)";
-            PreparedStatement p = StudentDAL.getConnection().prepareStatement(query);
+            PreparedStatement p = getConnection().prepareStatement(query);
             p.setString(1, t.getFirstName());
             p.setString(2, t.getLastName());
             p.setString(3, t.getHireDate().toString());
@@ -115,7 +115,7 @@ public class TeacherDAL extends MyDatabaseManager{
 
         try {
             String query = "SELECT * FROM Person WHERE concat(FirstName, ' ', LastName)  LIKE ?";
-            PreparedStatement p = StudentDAL.getConnection().prepareStatement(query);
+            PreparedStatement p = getConnection().prepareStatement(query);
             p.setString(1, "%" + fullName + "%");
             ResultSet rs = p.executeQuery();
 
@@ -144,7 +144,7 @@ public class TeacherDAL extends MyDatabaseManager{
 
         try {
             String query = "DELETE FROM Person WHERE PersonID = ?";
-            PreparedStatement p = StudentDAL.getConnection().prepareStatement(query);
+            PreparedStatement p = getConnection().prepareStatement(query);
             p.setInt(1, teacherID);
             result = p.executeUpdate();
         } catch (SQLException e) {
@@ -162,7 +162,7 @@ public class TeacherDAL extends MyDatabaseManager{
 
         try {
             String query = "select count(*) as count from Person WHERE HireDate > 0";
-            PreparedStatement p = StudentDAL.getConnection().prepareStatement(query);
+            PreparedStatement p = getConnection().prepareStatement(query);
             ResultSet rs = p.executeQuery();
             if (rs != null) {
                 while (rs.next()) {

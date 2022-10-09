@@ -34,7 +34,7 @@ public class Main extends javax.swing.JFrame {
                         setForm(new TeacherMainForm());
                         break;
                     case 2:
-                        
+                        setForm(new OnlineCourseMainForm());
                         break;
                     case 3:
                         

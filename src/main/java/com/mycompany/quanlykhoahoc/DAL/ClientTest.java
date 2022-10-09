@@ -4,8 +4,9 @@
  */
 package com.mycompany.quanlykhoahoc.DAL;
 
-import com.mycompany.quanlykhoahoc.Entity.Student;
+import com.mycompany.quanlykhoahoc.Entity.OnlineCourse;
 import java.util.ArrayList;
+
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class ClientTest {
 
     public static void main(String[] args) {
-        StudentDAL studentDAL = new StudentDAL();
-        
+        OnlineCourseDAL ocdal = new OnlineCourseDAL();
+        System.out.println(ocdal.countRecordOnlineCourse());
     }
 }
