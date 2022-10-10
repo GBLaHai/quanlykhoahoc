@@ -17,11 +17,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Manh Hai
  */
 public class OnlineCourseMainForm extends javax.swing.JPanel {
+
     private static CustomTable customTable = new CustomTable();
     private static OnlineCourseBLL onlineCourseBLL = new OnlineCourseBLL();
-    
+
     private int count, soTrang, trang = 1;
-    
 
     /**
      * Creates new form Form_Home
@@ -31,12 +31,12 @@ public class OnlineCourseMainForm extends javax.swing.JPanel {
         btn_them.setData(new Model_Button("ADD"));
         btn_sua.setData(new Model_Button("UPDATE"));
         btn_xoa.setData(new Model_Button("DELETE"));
-        
+
         customTable.customTable(jTable);
         customTable.customTableHeader(jTable, new Color(42, 187, 155), 14);
-        
+
         populateJtableWithStudents(1);
-        
+
         setPagination();
     }
 
@@ -280,24 +280,24 @@ public class OnlineCourseMainForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
-   
+
     }//GEN-LAST:event_jTableMouseClicked
 
     private void jButton_prevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_prevActionPerformed
-        if(trang > 1) {
+        if (trang > 1) {
             trang--;
             populateJtableWithStudents(trang);
-            jLabel_trang.setText(""+trang);
-            jLabel_so_trang.setText(trang+"/"+soTrang);
+            jLabel_trang.setText("" + trang);
+            jLabel_so_trang.setText(trang + "/" + soTrang);
         }
     }//GEN-LAST:event_jButton_prevActionPerformed
 
     private void jButton_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nextActionPerformed
-        if(trang < soTrang) {
+        if (trang < soTrang) {
             trang++;
             populateJtableWithStudents(trang);
-            jLabel_trang.setText(""+trang);
-            jLabel_so_trang.setText(trang+"/"+soTrang);
+            jLabel_trang.setText("" + trang);
+            jLabel_so_trang.setText(trang + "/" + soTrang);
         }
     }//GEN-LAST:event_jButton_nextActionPerformed
 
@@ -305,14 +305,14 @@ public class OnlineCourseMainForm extends javax.swing.JPanel {
         trang = 1;
         populateJtableWithStudents(trang);
         jLabel_trang.setText("1");
-        jLabel_so_trang.setText("1/"+soTrang);
+        jLabel_so_trang.setText("1/" + soTrang);
     }//GEN-LAST:event_jButton_dauActionPerformed
 
     private void jButton_cuoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cuoiActionPerformed
         trang = soTrang;
         populateJtableWithStudents(trang);
-        jLabel_trang.setText(""+soTrang);
-        jLabel_so_trang.setText(soTrang+"/"+soTrang);
+        jLabel_trang.setText("" + soTrang);
+        jLabel_so_trang.setText(soTrang + "/" + soTrang);
     }//GEN-LAST:event_jButton_cuoiActionPerformed
 
     private void btn_themMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_themMouseClicked
@@ -321,7 +321,8 @@ public class OnlineCourseMainForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_themMouseClicked
 
     private void btn_suaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suaMouseClicked
-        
+        OnlineCourseEditForm courseEditForm = new OnlineCourseEditForm();
+        courseEditForm.setVisible(true);
     }//GEN-LAST:event_btn_suaMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -329,7 +330,8 @@ public class OnlineCourseMainForm extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_xoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_xoaMouseClicked
-        
+        OnlineCourseDeleteForm courseDeleteForm = new OnlineCourseDeleteForm();
+        courseDeleteForm.setVisible(true);
     }//GEN-LAST:event_btn_xoaMouseClicked
 
     private void searchTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextActionPerformed
@@ -341,28 +343,27 @@ public class OnlineCourseMainForm extends javax.swing.JPanel {
         populateJtableWithFullname(title);
     }//GEN-LAST:event_searchTextKeyPressed
 
-
     public void populateJtableWithStudents(int trang) {
         ArrayList<OnlineCourse> onlineCourseList = (ArrayList<OnlineCourse>) onlineCourseBLL.LoadOnlineCourses(trang);
-        
+
         // jtable columns
-        String[] colNames = {"ID","TITLE", "CREDITS","DEPARTMENT", "URL"};
-        
+        String[] colNames = {"ID", "TITLE", "CREDITS", "DEPARTMENT", "URL"};
+
         // jtable rows
         Object[][] rows = new Object[onlineCourseList.size()][colNames.length];
-        
-        for(int i = 0; i < onlineCourseList.size(); i++) {
+
+        for (int i = 0; i < onlineCourseList.size(); i++) {
             rows[i][0] = onlineCourseList.get(i).getCourseID();
             rows[i][1] = onlineCourseList.get(i).getTitle();
             rows[i][2] = onlineCourseList.get(i).getCredits();
             rows[i][3] = onlineCourseList.get(i).getDepartmentName();
             rows[i][4] = onlineCourseList.get(i).getUrl();
         }
-        
+
         DefaultTableModel model = new DefaultTableModel(rows, colNames);
         jTable.setModel(model);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.mycompany.quanlykhoahoc.Component.Card btn_sua;
     private com.mycompany.quanlykhoahoc.Component.Card btn_them;
@@ -388,7 +389,7 @@ public class OnlineCourseMainForm extends javax.swing.JPanel {
 
     private void setPagination() {
         count = onlineCourseBLL.countRecordOnlineCourse();
-        if(count % 15 == 0) {
+        if (count % 15 == 0) {
             soTrang = count / 15;
         } else {
             soTrang = count / 15 + 1;
@@ -396,26 +397,26 @@ public class OnlineCourseMainForm extends javax.swing.JPanel {
         jLabel_trang.setText("1");
         jLabel_so_trang.setText("1/" + soTrang);
     }
-    
+
     public void populateJtableWithFullname(String title) {
         ArrayList<OnlineCourse> onlineCourseList = (ArrayList<OnlineCourse>) onlineCourseBLL.findOnlineCourse(title);
-        
+
         // jtable columns
-        String[] colNames = {"ID","TITLE", "CREDITS","DEPARTMENT", "URL"};
-        
+        String[] colNames = {"ID", "TITLE", "CREDITS", "DEPARTMENT", "URL"};
+
         // jtable rows
         Object[][] rows = new Object[onlineCourseList.size()][colNames.length];
-        
-        for(int i = 0; i < onlineCourseList.size(); i++) {
+
+        for (int i = 0; i < onlineCourseList.size(); i++) {
             rows[i][0] = onlineCourseList.get(i).getCourseID();
             rows[i][1] = onlineCourseList.get(i).getTitle();
             rows[i][2] = onlineCourseList.get(i).getCredits();
             rows[i][3] = onlineCourseList.get(i).getDepartmentName();
             rows[i][4] = onlineCourseList.get(i).getUrl();
         }
-        
+
         DefaultTableModel model = new DefaultTableModel(rows, colNames);
         jTable.setModel(model);
     }
-   
+
 }

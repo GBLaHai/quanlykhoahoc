@@ -73,4 +73,8 @@ public class OnlineCourseBLL {
         return result;
     }
     
+    public int getMaxIDCourse() {
+        int result = onlineCourseDAL.getMaxIDCourse();
+        return result;
+    }
 }

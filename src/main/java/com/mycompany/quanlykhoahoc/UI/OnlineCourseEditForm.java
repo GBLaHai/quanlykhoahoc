@@ -326,9 +326,9 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
                 oc.setUrl(url);
                 oc.setDepartmentName(departmentName);
                 if (onlineCourseBLL.updateOnlineCourse(oc) > 0) {
-                    JOptionPane.showMessageDialog(null, "Student edited", "Notification", 1);
+                    JOptionPane.showMessageDialog(null, "Online course edited", "Notification", 1);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Student not edited", "Notification", 2);
+                    JOptionPane.showMessageDialog(null, "Online course not edited", "Notification", 2);
                 };
             }
         } catch (Exception e) {

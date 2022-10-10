@@ -259,11 +259,14 @@ public class OnlineCourseAddForm extends javax.swing.JFrame {
             jLabel_EmptUrl_.setVisible(true);
         } else {
             Department d = departmentBLL.findDepartment(departmentName);
+            int courseID = onlineCourseBLL.getMaxIDCourse() + 1;
             OnlineCourse oc = new OnlineCourse();
             oc.setTitle(title);
             oc.setCredits(Integer.parseInt(credits));
             oc.setDepartmentID(d.getDepartmentID());
             oc.setUrl(url);
+            oc.setCourseID(courseID);
+            
             if (onlineCourseBLL.addOnlineCourse(oc) <= 0) {
                 JOptionPane.showMessageDialog(null, "Online not added", "Notification", 2);
             } else {

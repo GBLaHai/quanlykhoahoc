@@ -39,5 +39,11 @@ public class OnsiteCourse extends Course {
     public void setTime(String time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+  " OnsiteCourse{" + "location=" + location + ", days=" + days + ", time=" + time + '}';
+    }
+
     
 }

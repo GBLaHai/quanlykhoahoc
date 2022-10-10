@@ -117,16 +117,18 @@ public class OnlineCourseDAL extends MyDatabaseManager {
         int result = 0;
 
         try {
-            String query1 = "INSERT INTO course (Title, Credits, DepartmentID) VALUES(?, ?, ?);";
+            String query1 = "INSERT INTO course (CourseID, Title, Credits, DepartmentID) VALUES(?, ?, ?,?);";
             PreparedStatement p1 = getConnection().prepareStatement(query1);
-            p1.setString(1, oc.getTitle());
-            p1.setInt(2, oc.getCredits());
-            p1.setInt(3, oc.getDepartmentID());
+            p1.setInt(1, oc.getCourseID());
+            p1.setString(2, oc.getTitle());
+            p1.setInt(3, oc.getCredits());
+            p1.setInt(4, oc.getDepartmentID());
             result = p1.executeUpdate();
             
-            String query2 = "INSERT INTO onlineCourse (url) VALUES(?);";
+            String query2 = "INSERT INTO onlineCourse (CourseID, url) VALUES(?,?);";
             PreparedStatement p2 = getConnection().prepareStatement(query2);
-            p2.setString(1, oc.getUrl());
+            p2.setInt(1, oc.getCourseID());
+            p2.setString(2, oc.getUrl());
             result = p2.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -208,6 +210,28 @@ public class OnlineCourseDAL extends MyDatabaseManager {
             if (rs != null) {
                 while (rs.next()) {
                     result = rs.getInt("count");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+
+        return result;
+    }
+    
+    public int getMaxIDCourse() {
+        connectDB();
+        int result = 0;
+
+        try {
+            String query = "SELECT CourseID as id FROM course ORDER BY CourseID DESC LIMIT 0, 1";
+            PreparedStatement p = getConnection().prepareStatement(query);
+            ResultSet rs = p.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    result = rs.getInt("id");
                 }
             }
         } catch (SQLException e) {
