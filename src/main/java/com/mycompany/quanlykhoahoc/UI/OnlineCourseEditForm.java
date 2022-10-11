@@ -114,7 +114,7 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
         });
 
         jButton_Edit_.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton_Edit_.setText("Edit Online Course ");
+        jButton_Edit_.setText("Edit");
         jButton_Edit_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Edit_ActionPerformed(evt);
@@ -365,13 +365,13 @@ public class OnlineCourseEditForm extends javax.swing.JFrame {
         jLabel_EmptyCredits_.setVisible(false);
     }//GEN-LAST:event_jLabel_EmptyCredits_MouseClicked
 
-    private void jComboBox_Department_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_Department_ActionPerformed
-
-    }//GEN-LAST:event_jComboBox_Department_ActionPerformed
-
     private void jLabel_EmptUrl_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmptUrl_MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_EmptUrl_MouseClicked
+
+    private void jComboBox_Department_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_Department_ActionPerformed
+
+    }//GEN-LAST:event_jComboBox_Department_ActionPerformed
 
     private void fillJcomboboxWithDepartment() {
         ArrayList<Department> list = departmentBLL.LoadDepartments();

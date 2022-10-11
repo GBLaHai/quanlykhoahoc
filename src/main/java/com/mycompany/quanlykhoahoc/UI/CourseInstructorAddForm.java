@@ -4,8 +4,8 @@
  */
 package com.mycompany.quanlykhoahoc.UI;
 
-import com.mycompany.quanlykhoahoc.BLL.OnlineCourseBLL;
-import com.mycompany.quanlykhoahoc.Entity.OnlineCourse;
+import com.mycompany.quanlykhoahoc.BLL.CourseInstructorBLL;
+import com.mycompany.quanlykhoahoc.Entity.CourseInstructor;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -15,11 +15,11 @@ import javax.swing.border.Border;
  *
  * @author Manh Hai
  */
-public class OnlineCourseDeleteForm extends javax.swing.JFrame {
+public class CourseInstructorAddForm extends javax.swing.JFrame {
 
-    OnlineCourseBLL onlineCourseBLL = new OnlineCourseBLL();
+    CourseInstructorBLL courseInstructorBLL = new CourseInstructorBLL();
 
-    public OnlineCourseDeleteForm() {
+    public CourseInstructorAddForm() {
         initComponents();
 
         // set center the form 
@@ -29,6 +29,10 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(1, 152, 117));
         jPanel1.setBorder(panelHeaderBorder);
 
+        // hide the label "empty name message"
+        jLabel_EmptyCourseID_.setVisible(false);
+        jLabel_EmptyTeacherID_.setVisible(false);
+        
     }
 
     /**
@@ -44,8 +48,12 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
         jLabel_FormTitle = new javax.swing.JLabel();
         jLabel_CloseForm_ = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField_ID = new javax.swing.JTextField();
-        jButton_Delete_ = new javax.swing.JButton();
+        jTextField_CourseID = new javax.swing.JTextField();
+        jButton_Add_ = new javax.swing.JButton();
+        jLabel_EmptyCourseID_ = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField_TeacherID = new javax.swing.JTextField();
+        jLabel_EmptyTeacherID_ = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -56,7 +64,7 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
         jLabel_FormTitle.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel_FormTitle.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_FormTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_FormTitle.setText("Delete Online Course");
+        jLabel_FormTitle.setText("Add Course Instructor");
         jLabel_FormTitle.setOpaque(true);
 
         jLabel_CloseForm_.setBackground(new java.awt.Color(1, 152, 117));
@@ -72,26 +80,44 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel2.setText("Enter course ID:");
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel2.setText("Course ID:");
 
-        jTextField_ID.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTextField_ID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField_IDKeyTyped(evt);
-            }
-        });
+        jTextField_CourseID.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
-        jButton_Delete_.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton_Delete_.setText("Delete");
-        jButton_Delete_.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton_Add_.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton_Add_.setText("Add");
+        jButton_Add_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton_Delete_MouseClicked(evt);
+                jButton_Add_MouseClicked(evt);
             }
         });
-        jButton_Delete_.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Add_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Delete_ActionPerformed(evt);
+                jButton_Add_ActionPerformed(evt);
+            }
+        });
+
+        jLabel_EmptyCourseID_.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel_EmptyCourseID_.setForeground(new java.awt.Color(254, 0, 0));
+        jLabel_EmptyCourseID_.setText("* Enter the course id.");
+        jLabel_EmptyCourseID_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_EmptyCourseID_MouseClicked(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel3.setText("Teacher ID:");
+
+        jTextField_TeacherID.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+
+        jLabel_EmptyTeacherID_.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel_EmptyTeacherID_.setForeground(new java.awt.Color(254, 0, 0));
+        jLabel_EmptyTeacherID_.setText("* Enter the teacher id.");
+        jLabel_EmptyTeacherID_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_EmptyTeacherID_MouseClicked(evt);
             }
         });
 
@@ -100,16 +126,24 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel_FormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addComponent(jLabel_FormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_CloseForm_, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField_ID, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_Delete_, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_EmptyCourseID_))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_EmptyTeacherID_))
+                    .addComponent(jTextField_TeacherID, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_CourseID, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Add_, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,12 +152,20 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
                     .addComponent(jLabel_CloseForm_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel_FormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel_EmptyCourseID_))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(jButton_Delete_, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTextField_CourseID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel_EmptyTeacherID_))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_TeacherID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButton_Add_, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -131,12 +173,14 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -147,38 +191,42 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel_CloseForm_MouseClicked
 
-    private void jButton_Delete_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Delete_MouseClicked
+    private void jButton_Add_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_Add_MouseClicked
 
-    }//GEN-LAST:event_jButton_Delete_MouseClicked
+        String courseID = jTextField_CourseID.getText();
+        String teacherID = jTextField_TeacherID.getText();
 
-    private void jButton_Delete_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Delete_ActionPerformed
-
-        try {
-            int id = Integer.parseInt(jTextField_ID.getText());
-            OnlineCourse course = onlineCourseBLL.getOnlineCourse(id);
+        if (courseID.trim().isEmpty()) {
+            jLabel_EmptyCourseID_.setVisible(true);
+        } else if (teacherID.trim().isEmpty()) {
+            jLabel_EmptyTeacherID_.setVisible(true);
+        } else {
+            CourseInstructor ci = new CourseInstructor();
+            ci.setCourseID(Integer.parseInt(courseID));
+            ci.setTeacherID(Integer.parseInt(teacherID));
             
-            int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to delete this course online?", "Notification", JOptionPane.YES_NO_OPTION);
-
-            if (confirm == JOptionPane.YES_OPTION) {
-                if (onlineCourseBLL.deleteOnlineCourse(id) > 0) {
-                    JOptionPane.showMessageDialog(null, "Online course deleted", "Notification", 1);
-                } else {
-                    JOptionPane.showMessageDialog(null, "No online course with this id is found", "Notification", 3);
-                }
+            if (courseInstructorBLL.addCourseInstructor(ci) > 0) {
+                JOptionPane.showMessageDialog(null, "Course Instructor added", "Notification", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Course Instructor not added", "Notification", 2);
             }
-
-        } catch (NumberFormatException ex) {
-            //Logger.getLogger(EditMemberForm.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Enter Course ID", "Notification", 3);
         }
+    }//GEN-LAST:event_jButton_Add_MouseClicked
 
-    }//GEN-LAST:event_jButton_Delete_ActionPerformed
 
-    private void jTextField_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_IDKeyTyped
-        if (!Character.isDigit(evt.getKeyChar())) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField_IDKeyTyped
+    private void jLabel_EmptyCourseID_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmptyCourseID_MouseClicked
+        // hide this label on click
+        jLabel_EmptyCourseID_.setVisible(false);
+    }//GEN-LAST:event_jLabel_EmptyCourseID_MouseClicked
+
+    private void jLabel_EmptyTeacherID_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmptyTeacherID_MouseClicked
+        // hide this label on click
+        jLabel_EmptyTeacherID_.setVisible(false);
+    }//GEN-LAST:event_jLabel_EmptyTeacherID_MouseClicked
+
+    private void jButton_Add_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Add_ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Add_ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,142 +246,14 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OnlineCourseDeleteForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CourseInstructorAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OnlineCourseDeleteForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CourseInstructorAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OnlineCourseDeleteForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CourseInstructorAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OnlineCourseDeleteForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CourseInstructorAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -466,17 +386,21 @@ public class OnlineCourseDeleteForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OnlineCourseDeleteForm().setVisible(true);
+                new CourseInstructorAddForm().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_Delete_;
+    private javax.swing.JButton jButton_Add_;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel_CloseForm_;
+    private javax.swing.JLabel jLabel_EmptyCourseID_;
+    private javax.swing.JLabel jLabel_EmptyTeacherID_;
     private javax.swing.JLabel jLabel_FormTitle;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField_ID;
+    private javax.swing.JTextField jTextField_CourseID;
+    private javax.swing.JTextField jTextField_TeacherID;
     // End of variables declaration//GEN-END:variables
 }

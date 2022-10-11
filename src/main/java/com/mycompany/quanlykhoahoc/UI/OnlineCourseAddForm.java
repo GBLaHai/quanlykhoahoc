@@ -98,7 +98,7 @@ public class OnlineCourseAddForm extends javax.swing.JFrame {
         jTextField_Title.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jButton_Add_.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton_Add_.setText("Add New Online Course");
+        jButton_Add_.setText("Add");
         jButton_Add_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_Add_MouseClicked(evt);
@@ -268,9 +268,9 @@ public class OnlineCourseAddForm extends javax.swing.JFrame {
             oc.setCourseID(courseID);
             
             if (onlineCourseBLL.addOnlineCourse(oc) <= 0) {
-                JOptionPane.showMessageDialog(null, "Online not added", "Notification", 2);
+                JOptionPane.showMessageDialog(null, "Online Course not added", "Notification", 2);
             } else {
-                JOptionPane.showMessageDialog(null, "Online added", "Notification", 1);
+                JOptionPane.showMessageDialog(null, "Online Course added", "Notification", 1);
             }
         }
     }//GEN-LAST:event_jButton_Add_MouseClicked

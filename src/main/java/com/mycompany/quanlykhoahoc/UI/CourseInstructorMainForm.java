@@ -4,8 +4,8 @@
  */
 package com.mycompany.quanlykhoahoc.UI;
 
-import com.mycompany.quanlykhoahoc.BLL.TeacherBLL;
-import com.mycompany.quanlykhoahoc.Entity.Teacher;
+import com.mycompany.quanlykhoahoc.BLL.CourseInstructorBLL;
+import com.mycompany.quanlykhoahoc.Entity.CourseInstructor;
 import com.mycompany.quanlykhoahoc.Static.Model_Button;
 import com.mycompany.quanlykhoahoc.Utils.CustomTable;
 import java.awt.Color;
@@ -16,9 +16,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Manh Hai
  */
-public class TeacherMainForm extends javax.swing.JPanel {
+public class CourseInstructorMainForm extends javax.swing.JPanel {
     private static CustomTable customTable = new CustomTable();
-    private static TeacherBLL teacherBLL = new TeacherBLL();
+    private static CourseInstructorBLL courseInstructorBLL = new CourseInstructorBLL();
     
     private int count, soTrang, trang = 1;
     
@@ -26,7 +26,7 @@ public class TeacherMainForm extends javax.swing.JPanel {
     /**
      * Creates new form Form_Home
      */
-    public TeacherMainForm() {
+    public CourseInstructorMainForm() {
         initComponents();
         btn_them.setData(new Model_Button("ADD"));
         btn_sua.setData(new Model_Button("UPDATE"));
@@ -68,7 +68,6 @@ public class TeacherMainForm extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         searchText = new com.mycompany.quanlykhoahoc.Component.SearchText();
-        jLabel_CloseForm_1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(242, 240, 240));
 
@@ -216,14 +215,6 @@ public class TeacherMainForm extends javax.swing.JPanel {
             }
         });
 
-        jLabel_CloseForm_1.setBackground(new java.awt.Color(1, 152, 117));
-        jLabel_CloseForm_1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel_CloseForm_1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_CloseForm_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_CloseForm_1.setText("X");
-        jLabel_CloseForm_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel_CloseForm_1.setOpaque(true);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -232,13 +223,8 @@ public class TeacherMainForm extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(searchText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchText, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel_CloseForm_1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,11 +234,6 @@ public class TeacherMainForm extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel_CloseForm_1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -285,6 +266,7 @@ public class TeacherMainForm extends javax.swing.JPanel {
         String firstName = jTable.getValueAt(index, 1).toString();
         String lastName = jTable.getValueAt(index, 2).toString();
         String enrollmentDate = jTable.getValueAt(index, 3).toString();
+        
         
     }//GEN-LAST:event_jTableMouseClicked
 
@@ -321,12 +303,12 @@ public class TeacherMainForm extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_cuoiActionPerformed
 
     private void btn_themMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_themMouseClicked
-        TeacherAddForm addForm = new TeacherAddForm();
+        CourseInstructorAddForm addForm = new CourseInstructorAddForm();
         addForm.setVisible(true);
     }//GEN-LAST:event_btn_themMouseClicked
 
     private void btn_suaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_suaMouseClicked
-        TeacherEditForm editForm = new TeacherEditForm();
+        CourseInstructorEditForm editForm = new CourseInstructorEditForm();
         editForm.setVisible(true);
     }//GEN-LAST:event_btn_suaMouseClicked
 
@@ -335,7 +317,7 @@ public class TeacherMainForm extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_xoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_xoaMouseClicked
-        TeacherDeleteForm deleteForm = new TeacherDeleteForm();
+        CourseInstructorDeleteForm deleteForm = new CourseInstructorDeleteForm();
         deleteForm.setVisible(true);
     }//GEN-LAST:event_btn_xoaMouseClicked
 
@@ -350,19 +332,20 @@ public class TeacherMainForm extends javax.swing.JPanel {
 
 
     public void populateJtableWithStudents(int trang) {
-        ArrayList<Teacher> teacherList = (ArrayList<Teacher>) teacherBLL.LoadTeachers(trang);
+        ArrayList<CourseInstructor> courseInstructortList = (ArrayList<CourseInstructor>) courseInstructorBLL.LoadCourseInstructor(trang);
         
         // jtable columns
-        String[] colNames = {"ID","FIRST NAME", "LAST NAME","HIRE DATE"};
+        String[] colNames = {"COURSEID","TITLE", "TEACHERID","FULLNAME"};
         
         // jtable rows
-        Object[][] rows = new Object[teacherList.size()][colNames.length];
+        Object[][] rows = new Object[courseInstructortList.size()][colNames.length];
         
-        for(int i = 0; i < teacherList.size(); i++) {
-            rows[i][0] = teacherList.get(i).getPersonId();
-            rows[i][1] = teacherList.get(i).getFirstName();
-            rows[i][2] = teacherList.get(i).getLastName();
-            rows[i][3] = teacherList.get(i).getHireDate();
+        for(int i = 0; i < courseInstructortList.size(); i++) {
+            rows[i][0] = courseInstructortList.get(i).getCourseID();
+            rows[i][1] = courseInstructortList.get(i).getTitleCourse();
+            rows[i][2] = courseInstructortList.get(i).getTeacherID();
+            rows[i][3] = courseInstructortList.get(i).getFirstName() 
+                    + " " + courseInstructortList.get(i).getLastName();
         }
         
         DefaultTableModel model = new DefaultTableModel(rows, colNames);
@@ -380,7 +363,6 @@ public class TeacherMainForm extends javax.swing.JPanel {
     private javax.swing.JButton jButton_next;
     private javax.swing.JButton jButton_prev;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel_CloseForm_1;
     private javax.swing.JLabel jLabel_so_trang;
     private javax.swing.JLabel jLabel_trang;
     private javax.swing.JPanel jPanel1;
@@ -393,7 +375,7 @@ public class TeacherMainForm extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void setPagination() {
-        count = teacherBLL.countRecordTeacher();
+        count = courseInstructorBLL.countRecordCourseInstructor();
         if(count % 15 == 0) {
             soTrang = count / 15;
         } else {
@@ -403,20 +385,21 @@ public class TeacherMainForm extends javax.swing.JPanel {
         jLabel_so_trang.setText("1/" + soTrang);
     }
     
-    public void populateJtableWithFullname(String fullname) {
-        ArrayList<Teacher> teacherList = (ArrayList<Teacher>) teacherBLL.findTeacher(fullname);
+    public void populateJtableWithFullname(String title) {
+        ArrayList<CourseInstructor> courseInstructortList = (ArrayList<CourseInstructor>) courseInstructorBLL.findCourseInstructor(title);
         
         // jtable columns
-        String[] colNames = {"ID","FIRST NAME", "LAST NAME","HIRE DATE"};
+        String[] colNames = {"COURSEID","TITLE", "TEACHERID","FULLNAME"};
         
         // jtable rows
-        Object[][] rows = new Object[teacherList.size()][colNames.length];
+        Object[][] rows = new Object[courseInstructortList.size()][colNames.length];
         
-        for(int i = 0; i < teacherList.size(); i++) {
-            rows[i][0] = teacherList.get(i).getPersonId();
-            rows[i][1] = teacherList.get(i).getFirstName();
-            rows[i][2] = teacherList.get(i).getLastName();
-            rows[i][3] = teacherList.get(i).getHireDate();
+        for(int i = 0; i < courseInstructortList.size(); i++) {
+            rows[i][0] = courseInstructortList.get(i).getCourseID();
+            rows[i][1] = courseInstructortList.get(i).getTitleCourse();
+            rows[i][2] = courseInstructortList.get(i).getTeacherID();
+            rows[i][3] = courseInstructortList.get(i).getFirstName() 
+                    + " " + courseInstructortList.get(i).getLastName();
         }
         
         DefaultTableModel model = new DefaultTableModel(rows, colNames);

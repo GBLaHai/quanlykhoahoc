@@ -102,7 +102,7 @@ public class StudentAddForm extends javax.swing.JFrame {
         jTextField_FirstName.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jButton_Add_.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton_Add_.setText("Add New Student");
+        jButton_Add_.setText("Add");
         jButton_Add_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_Add_MouseClicked(evt);

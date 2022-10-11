@@ -32,8 +32,8 @@ public class StudentMainForm extends javax.swing.JPanel {
         btn_sua.setData(new Model_Button("UPDATE"));
         btn_xoa.setData(new Model_Button("DELETE"));
         
-        customTable.customTable(jTable_Student);
-        customTable.customTableHeader(jTable_Student, new Color(42, 187, 155), 14);
+        customTable.customTable(jTable);
+        customTable.customTableHeader(jTable, new Color(42, 187, 155), 14);
         
         populateJtableWithStudents(1);
         
@@ -56,7 +56,7 @@ public class StudentMainForm extends javax.swing.JPanel {
         btn_xoa = new com.mycompany.quanlykhoahoc.Component.Card();
         panelBorder1 = new com.mycompany.quanlykhoahoc.Component.PanelBorder();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_Student = new javax.swing.JTable();
+        jTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jButton_dau = new javax.swing.JButton();
         jButton_prev = new javax.swing.JButton();
@@ -103,8 +103,8 @@ public class StudentMainForm extends javax.swing.JPanel {
 
         panelBorder1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable_Student.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jTable_Student.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -112,12 +112,12 @@ public class StudentMainForm extends javax.swing.JPanel {
 
             }
         ));
-        jTable_Student.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_StudentMouseClicked(evt);
+                jTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable_Student);
+        jScrollPane1.setViewportView(jTable);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 15, 5));
@@ -279,15 +279,15 @@ public class StudentMainForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable_StudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_StudentMouseClicked
-        int index = jTable_Student.getSelectedRow();
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        int index = jTable.getSelectedRow();
         
-        String firstName = jTable_Student.getValueAt(index, 1).toString();
-        String lastName = jTable_Student.getValueAt(index, 2).toString();
-        String enrollmentDate = jTable_Student.getValueAt(index, 3).toString();
+        String firstName = jTable.getValueAt(index, 1).toString();
+        String lastName = jTable.getValueAt(index, 2).toString();
+        String enrollmentDate = jTable.getValueAt(index, 3).toString();
         
         
-    }//GEN-LAST:event_jTable_StudentMouseClicked
+    }//GEN-LAST:event_jTableMouseClicked
 
     private void jButton_prevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_prevActionPerformed
         if(trang > 1) {
@@ -367,7 +367,7 @@ public class StudentMainForm extends javax.swing.JPanel {
         }
         
         DefaultTableModel model = new DefaultTableModel(rows, colNames);
-        jTable_Student.setModel(model);
+        jTable.setModel(model);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -387,7 +387,7 @@ public class StudentMainForm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_Student;
+    private javax.swing.JTable jTable;
     private javax.swing.JLayeredPane panel;
     private com.mycompany.quanlykhoahoc.Component.PanelBorder panelBorder1;
     private com.mycompany.quanlykhoahoc.Component.SearchText searchText;
@@ -421,7 +421,7 @@ public class StudentMainForm extends javax.swing.JPanel {
         }
         
         DefaultTableModel model = new DefaultTableModel(rows, colNames);
-        jTable_Student.setModel(model);
+        jTable.setModel(model);
     }
    
 }

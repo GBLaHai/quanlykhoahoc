@@ -109,7 +109,7 @@ public class TeacherEditForm extends javax.swing.JFrame {
         });
 
         jButton_Edit_.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton_Edit_.setText("Edit Teacher Info");
+        jButton_Edit_.setText("Edit");
         jButton_Edit_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Edit_ActionPerformed(evt);

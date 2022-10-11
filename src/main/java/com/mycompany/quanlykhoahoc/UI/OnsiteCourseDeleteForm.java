@@ -29,8 +29,6 @@ public class OnsiteCourseDeleteForm extends javax.swing.JFrame {
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(1, 152, 117));
         jPanel1.setBorder(panelHeaderBorder);
 
-        // hide the label "empty name message"
-        jLabel_EmptyID_.setVisible(false);
     }
 
     /**
@@ -48,7 +46,6 @@ public class OnsiteCourseDeleteForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField_ID = new javax.swing.JTextField();
         jButton_Delete_ = new javax.swing.JButton();
-        jLabel_EmptyID_ = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -86,7 +83,7 @@ public class OnsiteCourseDeleteForm extends javax.swing.JFrame {
         });
 
         jButton_Delete_.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton_Delete_.setText("Delete Onsite Course");
+        jButton_Delete_.setText("Delete");
         jButton_Delete_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_Delete_MouseClicked(evt);
@@ -95,15 +92,6 @@ public class OnsiteCourseDeleteForm extends javax.swing.JFrame {
         jButton_Delete_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Delete_ActionPerformed(evt);
-            }
-        });
-
-        jLabel_EmptyID_.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel_EmptyID_.setForeground(new java.awt.Color(254, 0, 0));
-        jLabel_EmptyID_.setText("* You must enter the member ID (in digits).");
-        jLabel_EmptyID_.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_EmptyID_MouseClicked(evt);
             }
         });
 
@@ -117,12 +105,10 @@ public class OnsiteCourseDeleteForm extends javax.swing.JFrame {
                 .addComponent(jLabel_CloseForm_, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_EmptyID_)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField_ID, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton_Delete_, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_ID, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Delete_, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -135,9 +121,7 @@ public class OnsiteCourseDeleteForm extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_EmptyID_)
-                .addGap(30, 30, 30)
+                .addGap(51, 51, 51)
                 .addComponent(jButton_Delete_, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -167,18 +151,13 @@ public class OnsiteCourseDeleteForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton_Delete_MouseClicked
 
-    private void jLabel_EmptyID_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_EmptyID_MouseClicked
-        // hide this label on click
-        jLabel_EmptyID_.setVisible(false);
-    }//GEN-LAST:event_jLabel_EmptyID_MouseClicked
-
     private void jButton_Delete_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Delete_ActionPerformed
 
         try {
             int id = Integer.parseInt(jTextField_ID.getText());
             OnsiteCourse course = onsiteCourseBLL.getOnsiteCourse(id);
             
-            int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to delete this student?", "Notification", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(null, "Are you sure to delete this onsite course?", "Notification", JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
                 if (onsiteCourseBLL.deleteOnsiteCourse(id) > 0) {
@@ -752,7 +731,6 @@ public class OnsiteCourseDeleteForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Delete_;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_CloseForm_;
-    private javax.swing.JLabel jLabel_EmptyID_;
     private javax.swing.JLabel jLabel_FormTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField_ID;
