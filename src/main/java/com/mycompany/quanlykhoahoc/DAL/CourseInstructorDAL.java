@@ -178,10 +178,7 @@ public class CourseInstructorDAL extends MyDatabaseManager {
         int result = 0;
 
         try {
-            String query = "select count(*) as count\n"
-                    + "from CourseInstructor ci join course c\n"
-                    + "on ci.CourseID = c.CourseID join person p\n"
-                    + "on ci.PersonID = p.PersonID and p.HireDate > 0";
+            String query = "select count(*) as count from CourseInstructor;";
             PreparedStatement p = getConnection().prepareStatement(query);
             ResultSet rs = p.executeQuery();
             if (rs != null) {

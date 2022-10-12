@@ -43,6 +43,7 @@ public class Main extends javax.swing.JFrame {
                         setForm(new CourseInstructorMainForm());
                         break;
                     case 5:
+                        setForm(new StudentGradeMainForm());
                         break;
                 }
             }

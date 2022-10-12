@@ -201,10 +201,7 @@ public class OnlineCourseDAL extends MyDatabaseManager {
         int result = 0;
 
         try {
-            String query = "select count(*) as count\n"
-                    + "from course c join onlinecourse oc\n"
-                    + "on c.CourseID = oc.CourseID join department d\n"
-                    + "on c.DepartmentID = d.DepartmentID";
+            String query = "select count(*) as count from OnlineCourse;";
             PreparedStatement p = getConnection().prepareStatement(query);
             ResultSet rs = p.executeQuery();
             if (rs != null) {
